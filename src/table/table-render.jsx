@@ -25,14 +25,18 @@ const TableRender = (
   editRow,
   deleteRow,
 ) => {
-  console.log("hii");
+  {
+    console.log("row1", rows);
+  }
+
+  console.log("headers22", headers["headers"]);
   return (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ width: "100%" }} size="small">
           <TableHead>
-            {headers.length > 0 &&
-              headers.map((headerRow, headerRowIdx) => (
+            {(headers["headers"] || []).length > 0 &&
+              headers["headers"].map((headerRow, headerRowIdx) => (
                 <TableRow key={`headerRow-${headerRowIdx}`}>
                   {headerRow.cells.length > 0 &&
                     headerRow.cells.map((headerRowCell, headerRowCellIdx) => (

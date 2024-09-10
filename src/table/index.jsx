@@ -30,6 +30,8 @@ const TableScreen = () => {
     setOpenHeaderDialog(true);
   };
 
+  console.log("rows", rows);
+
   const onCloseHeaderDialog = () => {
     setSelectedHeaderIdx(null);
     setHeaderObj({ cells: [] });
@@ -56,7 +58,7 @@ const TableScreen = () => {
     } else {
       setRowObj({ cells: [] });
     }
-    setOpenRowDialog(false);
+    setOpenRowDialog(true);
   };
 
   const onCloseRowDialog = () => {
@@ -74,6 +76,8 @@ const TableScreen = () => {
       return [...prevRows.slice(0, rowIdx), ...prevRows.slice(rowIdx + 1)];
     });
   };
+
+  console.log("mainRows", rows);
 
   return (
     <div>
@@ -112,7 +116,7 @@ const TableScreen = () => {
             headers={headers}
             editHeaderRow={editHeaderRow}
             deleteHeaderRow={deleteHeaderRow}
-            rows={rows}
+            rows={rows && rows}
             editRow={editRow}
             deleteRow={deleteRow}
           />

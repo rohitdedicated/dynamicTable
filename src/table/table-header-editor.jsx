@@ -124,7 +124,7 @@ const ExhibitTableRow = ({
           </div>
         </TableCell>
       </TableRow>
-      <TableRow>
+      {/* <TableRow>
         <TableCell colSpan={6}>
           {headingStyleFlag && (
             <Grid item xs={12}>
@@ -137,7 +137,7 @@ const ExhibitTableRow = ({
             </Grid>
           )}
         </TableCell>
-      </TableRow>
+      </TableRow> */}
     </>
   );
 };
@@ -200,6 +200,7 @@ const TableHeaderEditor = ({
         return [...oldHeaders, headerObj];
       });
     }
+    console.log("final", headers);
     onCloseHeaderDialog();
   };
 
