@@ -18,19 +18,16 @@ const TableScreen = () => {
   const [openHeaderDialog, setOpenHeaderDialog] = useState(false);
   const [rowObj, setRowObj] = useState({ cells: [] });
   const [openRowDialog, setOpenRowDialog] = useState(false);
-  console.log("headers", headers);
 
   const onOpenHeaderDialog = (headerIdx) => {
     if (headerIdx || headerIdx === 0) {
       setSelectedHeaderIdx(headerIdx);
-      setHeaderObj(headers[headerIdx]);
+      setHeaderObj({ ...headers[headerIdx] });
     } else {
       setHeaderObj({ cells: [] });
     }
     setOpenHeaderDialog(true);
   };
-
-  console.log("rows", rows);
 
   const onCloseHeaderDialog = () => {
     setSelectedHeaderIdx(null);
@@ -116,7 +113,7 @@ const TableScreen = () => {
             headers={headers}
             editHeaderRow={editHeaderRow}
             deleteHeaderRow={deleteHeaderRow}
-            rows={rows && rows}
+            rows={rows}
             editRow={editRow}
             deleteRow={deleteRow}
           />

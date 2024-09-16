@@ -58,7 +58,7 @@ const TableRowEditor = ({
     ]);
   };
 
-  console.log("rows", rows);
+  console.log("rowsss", rows);
 
   const saveRow = () => {
     if (selectedRowIdx || selectedRowIdx === 0) {
