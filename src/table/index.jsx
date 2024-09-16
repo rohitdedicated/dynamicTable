@@ -18,12 +18,11 @@ const TableScreen = () => {
   const [openHeaderDialog, setOpenHeaderDialog] = useState(false);
   const [rowObj, setRowObj] = useState({ cells: [] });
   const [openRowDialog, setOpenRowDialog] = useState(false);
-  console.log("headers", headers);
 
   const onOpenHeaderDialog = (headerIdx) => {
     if (headerIdx || headerIdx === 0) {
       setSelectedHeaderIdx(headerIdx);
-      setHeaderObj(headers[headerIdx]);
+      setHeaderObj({ ...headers[headerIdx] });
     } else {
       setHeaderObj({ cells: [] });
     }
@@ -56,7 +55,7 @@ const TableScreen = () => {
     } else {
       setRowObj({ cells: [] });
     }
-    setOpenRowDialog(false);
+    setOpenRowDialog(true);
   };
 
   const onCloseRowDialog = () => {
@@ -74,6 +73,8 @@ const TableScreen = () => {
       return [...prevRows.slice(0, rowIdx), ...prevRows.slice(rowIdx + 1)];
     });
   };
+
+  console.log("mainRows", rows);
 
   return (
     <div>

@@ -17,21 +17,23 @@ import {
   EditOutlined as EditIcon,
   DeleteOutline as DeleteIcon,
 } from "@mui/icons-material";
-const TableRender = (
+const TableRender = ({
   headers,
   editHeaderRow,
   deleteHeaderRow,
   rows,
   editRow,
   deleteRow,
-) => {
-  console.log("hii");
+}) => {
+  console.log("row1", rows);
+
+  console.log("headers22", headers);
   return (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ width: "100%" }} size="small">
           <TableHead>
-            {headers.length > 0 &&
+            {(headers || []).length > 0 &&
               headers.map((headerRow, headerRowIdx) => (
                 <TableRow key={`headerRow-${headerRowIdx}`}>
                   {headerRow.cells.length > 0 &&
@@ -40,13 +42,14 @@ const TableRender = (
                         key={`headerRowCell-${headerRowIdx}-${headerRowCellIdx}`}
                         colSpan={headerRowCell.colSpan}
                         rowSpan={headerRowCell.rowSapn}
-                        // style={{}}
+                        style={{
+                          backgroundColor: "#b5b2b1",
+                          color: "#2e2d2d",
+                          borderLeft: "1px solid #fffff",
+                          borderRight: "1px solid #ffffff",
+                        }}
                       >
-                        {console.log(
-                          "headerRowCell.label",
-                          headerRowCell.label,
-                        )}
-                        {headerRowCell.label}
+                        <strong>{headerRowCell.label}</strong>
                       </TableCell>
                     ))}
 
@@ -54,7 +57,10 @@ const TableRender = (
                     <TableCell>No Data to Show</TableCell>
                   )}
 
-                  <TableCell align="center">
+                  <TableCell
+                    align="center"
+                    style={{ backgroundColor: "#b5b2b1" }}
+                  >
                     <Tooltip title="Edit Header">
                       <IconButton
                         size="small"
@@ -88,12 +94,18 @@ const TableRender = (
                         key={`rowCell-${rowIdx}-${rowCellIdx}`}
                         colSpan={rowCell.colSpan}
                         rowSpan={rowCell.rowSpan}
+                        style={{
+                          borderLeft: "1px solid #999191",
+                          borderRight: "1px solid #999191",
+                        }}
                       >
                         {rowCell.label}
                       </TableCell>
                     ))}
 
-                  {row.cells.length > 0 && <TableCell>No Cell Data</TableCell>}
+                  {row.cells.length === 0 && (
+                    <TableCell>No Cell Data</TableCell>
+                  )}
 
                   <TableCell align="center">
                     <Tooltip title="Edit Columns">
