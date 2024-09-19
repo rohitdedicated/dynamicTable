@@ -74,8 +74,6 @@ const TableScreen = () => {
     });
   };
 
-  console.log("mainRows", rows);
-
   return (
     <div>
       <Grid container spacing={1}>

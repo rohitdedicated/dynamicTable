@@ -29,6 +29,69 @@ import {
   DeleteOutline as DeleteIcon,
   Settings as SettingsIcon,
 } from "@mui/icons-material";
+import CustomDropDown from "../common/custom-dropdown";
+import ColorPicker from "../common/color-picker";
+
+const Style = ({ cellIdx, cell, updateHeaderCell }) => {
+  return (
+    <Grid container spaceing={2}>
+      <Grid
+        item
+        xs={12}
+        style={{ display: "flex", justifyContent: "center", gap: "15px" }}
+      >
+        <Grid xs={6}>
+          <CustomDropDown
+            label="Font Family"
+            size="small"
+            variant="outlined"
+            value={cell.headerFontStyle}
+            onChange={(e) => {
+              updateHeaderCell(cellIdx, "headerFontStyle", e.target.value);
+            }}
+            options={[
+              { id: "Arial", value: "Arial" },
+              { id: "Brush Script MT", value: "Brush Script MT" },
+              { id: "Courier New", value: "Courier New" },
+              { id: "Times New Roman", value: "Times New Roman" },
+              { id: "Trebuchet MS", value: "Trebuchet MS" },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type="number"
+            label="Font Size"
+            size="small"
+            value={cell.headerFontSize}
+            onChange={(e) => {
+              updateHeaderCell(cellIdx, "headerFontSize", e.target.value);
+            }}
+            InputLabelProps={{ shrink: true }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <ColorPicker
+            label="Font Color"
+            value={cell.fontColor}
+            onChange={(e) =>
+              updateHeaderCell(cellIdx, "fontColor", e.target.value)
+            }
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <ColorPicker
+            label="Background Color"
+            value={cell.backgroundColor}
+            onChange={(e) =>
+              updateHeaderCell(cellIdx, "backgroundColor", e.target.value)
+            }
+          />
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
 
 const ExhibitTableRow = ({
   cellIdx,
@@ -103,15 +166,15 @@ const ExhibitTableRow = ({
         </TableCell>
         <TableCell>
           <div style={{ display: "flex", textAlign: "center" }}>
-            {/* <Tooltip title="Config Styles">
-                <IconButton
-                  color="primary"
-                  size="small"
-                  onClick={() => setHeadingStyleFlag(true)}
-                >
-                  <SettingsIcon style={{ fontSize: "18px" }} />
-                </IconButton>
-              </Tooltip> */}
+            <Tooltip title="Config Styles">
+              <IconButton
+                color="primary"
+                size="small"
+                onClick={() => setHeadingStyleFlag(true)}
+              >
+                <SettingsIcon style={{ fontSize: "18px" }} />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Delete">
               <IconButton
                 color="error"
@@ -124,20 +187,19 @@ const ExhibitTableRow = ({
           </div>
         </TableCell>
       </TableRow>
-      {/* <TableRow>
+      <TableRow>
         <TableCell colSpan={6}>
           {headingStyleFlag && (
             <Grid item xs={12}>
-              <Styling
+              <Style
                 cellIdx={cellIdx}
                 cell={cell}
                 updateHeaderCell={updateHeaderCell}
-                lookupData={lookupData}
               />
             </Grid>
           )}
         </TableCell>
-      </TableRow> */}
+      </TableRow>
     </>
   );
 };
@@ -200,7 +262,6 @@ const TableHeaderEditor = ({
         return [...oldHeaders, headerObj];
       });
     }
-    console.log("final", headers);
     onCloseHeaderDialog();
   };
 
