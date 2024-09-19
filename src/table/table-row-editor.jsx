@@ -58,8 +58,6 @@ const TableRowEditor = ({
     ]);
   };
 
-  console.log("rowsss", rows);
-
   const saveRow = () => {
     if (selectedRowIdx || selectedRowIdx === 0) {
       setRows((oldHeaders) => {

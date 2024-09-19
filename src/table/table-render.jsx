@@ -25,9 +25,6 @@ const TableRender = ({
   editRow,
   deleteRow,
 }) => {
-  console.log("row1", rows);
-
-  console.log("headers22", headers);
   return (
     <div>
       <TableContainer component={Paper}>
@@ -43,10 +40,13 @@ const TableRender = ({
                         colSpan={headerRowCell.colSpan}
                         rowSpan={headerRowCell.rowSapn}
                         style={{
-                          backgroundColor: "#b5b2b1",
-                          color: "#2e2d2d",
+                          backgroundColor:
+                            headerRowCell.backgroundColor || "#b5b2b1",
+                          color: headerRowCell.fontColor || "#2e2d2d",
                           borderLeft: "1px solid #fffff",
                           borderRight: "1px solid #ffffff",
+                          fontFamily: headerRowCell.headerFontStyle,
+                          fontSize: headerRowCell.headerFontSize + "px",
                         }}
                       >
                         <strong>{headerRowCell.label}</strong>
